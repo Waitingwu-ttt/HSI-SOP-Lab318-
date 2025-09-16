@@ -1,0 +1,702 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HSI 實驗操作流程</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(199, 121, 69, 1);
+	fill: rgba(199, 121, 69, 1);
+}
+.highlight-yellow {
+	color: rgba(175, 136, 66, 1);
+	fill: rgba(175, 136, 66, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(174, 96, 133, 1);
+	fill: rgba(174, 96, 133, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.highlight-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.highlight-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.highlight-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.highlight-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.highlight-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.highlight-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(199, 121, 69, 1);
+	fill: rgba(199, 121, 69, 1);
+}
+.block-color-yellow {
+	color: rgba(175, 136, 66, 1);
+	fill: rgba(175, 136, 66, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(174, 96, 133, 1);
+	fill: rgba(174, 96, 133, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="26a04147-e29c-80c8-befe-e98265bc923a" class="page mono"><header><h1 class="page-title">HSI 實驗操作流程</h1><p class="page-description"></p></header><div class="page-body"><blockquote id="26f04147-e29c-800d-9ee7-d882f1433651" class="">更新於2025/09/14 吳瑋庭</blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26f04147-e29c-80a7-979e-cfce14c62ad5"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="26f04147-e29c-80b2-a802-cac5b39f5178" class="">建立高光譜影像（Hyperspectral Image, HSI）處理的標準作業流程（SOP）。透過此流程，<strong>使用者可將</strong><strong><span style="border-bottom:0.05em solid">原始高光譜影像檔進行裁切（Crop），獲得單一樣本影像</span></strong><strong>，</strong><strong><span style="border-bottom:0.05em solid">並將影像波段數據整理輸出為文字檔（.txt）。</span></strong></p></div></figure><hr id="26f04147-e29c-805f-af47-fd8779d0bd93"/><h2 id="26f04147-e29c-802a-947f-ee243d630990" class=""><mark class="highlight-yellow_background">流程大綱：</mark></h2><ul id="26f04147-e29c-80e2-9a3e-eee5e75a0160" class="bulleted-list"><li style="list-style-type:disc">第一階段<ul id="26f04147-e29c-80a0-ac73-dfad701ce6ff" class="bulleted-list"><li style="list-style-type:circle">將原始高光譜影像檔（RT）載入軟體</li></ul><ul id="26f04147-e29c-80a4-996e-f89d5b0a0746" class="bulleted-list"><li style="list-style-type:circle">依樣本範圍進行裁切</li></ul><ul id="26f04147-e29c-80af-a001-cc5b0cd85271" class="bulleted-list"><li style="list-style-type:circle">裁切並輸出 ROI儲存</li></ul></li></ul><ul id="26f04147-e29c-805e-b067-e8c74fccf46b" class="bulleted-list"><li style="list-style-type:disc">第二階段<ul id="26f04147-e29c-8009-844a-cc28ba0615cc" class="bulleted-list"><li style="list-style-type:circle">匯入Crop後的影像</li></ul><ul id="26f04147-e29c-80aa-a878-e858f45601b3" class="bulleted-list"><li style="list-style-type:circle">直接擷取其全波段數據</li></ul><ul id="26f04147-e29c-800e-bbcd-eb1641b9f28d" class="bulleted-list"><li style="list-style-type:circle">輸出並儲存為文字檔（.txt）</li></ul></li></ul><hr id="26f04147-e29c-808e-89aa-f4282f551934"/><h2 id="26f04147-e29c-80a5-9af5-e418f7e9c145" class=""><mark class="highlight-blue_background"><strong>第一階段：影像裁切（Crop）</strong></mark></h2><div id="26f04147-e29c-80d7-9550-e0211f5b1c14" class="column-list"><div id="26f04147-e29c-808d-bdec-c19ad64c2858" style="width:75%" class="column"><h3 id="26f04147-e29c-8067-9c8e-c5afe56c4c11" class=""><span style="border-bottom:0.05em solid">[步驟 1] 匯入原始影像</span></h3><p id="26f04147-e29c-8059-9e22-e161b1d9b880" class="">
+</p><ol type="1" id="26f04147-e29c-80c0-b15a-dfd5ce1ded9c" class="numbered-list" start="1"><li>點擊右側的 <strong>「Load」</strong> 按鈕<mark class="highlight-red">（紅色框）</mark>。</li></ol><ol type="1" id="26f04147-e29c-8078-91e9-c18dbdb961f6" class="numbered-list" start="2"><li>選取欲處理的 <strong>RT.raw 原始高光譜影像檔</strong>。</li></ol><ol type="1" id="26f04147-e29c-80af-930c-cc65d22311a0" class="numbered-list" start="3"><li>成功載入後：</li></ol><ul id="26f04147-e29c-80ce-91bc-f1ce1110131a" class="bulleted-list"><li style="list-style-type:disc">檔案路徑會顯示在 <strong>「Path」欄位</strong><mark class="highlight-blue">（藍色框）</mark>。</li></ul><ul id="26f04147-e29c-8023-a10d-e6781dd25359" class="bulleted-list"><li style="list-style-type:disc">主畫面中央將顯示影像內容。</li></ul><p id="26f04147-e29c-805c-90dc-dcfdbfc049e8" class="">
+</p></div><div id="26f04147-e29c-80ef-ba38-e5f9a3e2ab05" style="width:93.75%" class="column"><figure id="26f04147-e29c-80a7-a81a-c8b92f6a3f99" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/1_3.jpg"><img style="width:576px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/1_3.jpg"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26f04147-e29c-8013-8e49-e8ad74ce94bd"><div style="font-size:1.5em"><span class="icon">⚙</span></div><div style="width:100%"><p id="26f04147-e29c-809b-9bc7-e801b95590cb" class="">成功載入有影像顯示後，可在Path欄位確認是否載入為正確的影像（路徑）</p></div></figure><hr id="26f04147-e29c-80f3-a750-f71ca554a98f"/><div id="26f04147-e29c-805a-a204-f059866f4d00" class="column-list"><div id="26f04147-e29c-80e3-bc78-e79bd5f47a78" style="width:87.5%" class="column"><h3 id="26f04147-e29c-8023-a1de-e094f7a5bb2d" class=""><span style="border-bottom:0.05em solid">[步驟 2] 依樣本範圍進行裁切</span></h3><p id="26f04147-e29c-80a0-8d9b-e9c40db08750" class="">
+</p><ol type="1" id="26f04147-e29c-80e5-9687-fae82c67b287" class="numbered-list" start="1"><li>在影像左側工具列中，點選 <strong>矩形框選工具</strong><mark class="highlight-red">（紅色框）</mark>。</li></ol><ol type="1" id="26f04147-e29c-8008-903e-feed94277db4" class="numbered-list" start="2"><li>在影像畫面上拖曳滑鼠，框選欲裁切的樣本區域（如圖示白色框線）。</li></ol><ol type="1" id="26f04147-e29c-807f-959d-edd1c420b85e" class="numbered-list" start="3"><li>裁切完成後，至右側 <strong>[Report Setting] → ROI Range</strong><mark class="highlight-blue">（藍色框）</mark>檢視座標：<ul id="26f04147-e29c-8040-a243-cca76b31893e" class="bulleted-list"><li style="list-style-type:disc"><strong>X1 / X2</strong>：裁切區域的水平範圍</li></ul><ul id="26f04147-e29c-800c-89dd-c6b45a106e20" class="bulleted-list"><li style="list-style-type:disc"><strong>Y1 / Y2</strong>：裁切區域的垂直範圍</li></ul></li></ol><ol type="1" id="26f04147-e29c-80d3-aef6-c7609c5d0776" class="numbered-list" start="4"><li>確認 ROI Range 座標符合需求，即完成區域選取。</li></ol><p id="26f04147-e29c-800f-985f-c209fab47898" class="">
+</p></div><div id="26f04147-e29c-8098-84fc-eea90200e389" style="width:87.5%" class="column"><figure id="26f04147-e29c-80ca-a90c-db218014c76b" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/2.jpg"><img style="width:576px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/2.jpg"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26f04147-e29c-80e6-8908-e70c9b667e8c"><div style="font-size:1.5em"><span class="icon">⚙</span></div><div style="width:100%"><p id="26f04147-e29c-8061-96f0-d8b673bf3be4" class="">如果框選後想再重新框選，要先在影像中按一次滑鼠左鍵（視為框選取消）。 使用滑鼠滾輪可以使圖像放大縮小</p></div></figure><hr id="26f04147-e29c-80c3-8626-df8f35400389"/><div id="26f04147-e29c-8064-8246-ffb9c2eb82e8" class="column-list"><div id="26f04147-e29c-8013-a1e3-d905af5cdf2e" style="width:81.25%" class="column"><h3 id="26f04147-e29c-802f-982f-e991c014e323" class=""><span style="border-bottom:0.05em solid">[步驟 3] 裁切並輸出 ROI</span></h3><p id="26f04147-e29c-805e-bf9c-ca8a8b99ea26" class="">
+</p><ol type="1" id="26f04147-e29c-80b7-a26e-faae53cafbe7" class="numbered-list" start="1"><li>確認 ROI 範圍無誤後，點選上方功能列 <strong>「Tools → ROI → Cut ROI」</strong>。</li></ol><ol type="1" id="26f04147-e29c-802f-8e60-ea24674ee4e3" class="numbered-list" start="2"><li>系統會跳出 <strong>Wavelength Range</strong> 視窗，顯示起始波長（Start）、結束波長（End）及間隔（Interval）。</li></ol><ol type="1" id="26f04147-e29c-80f9-afcd-df087ceb62a5" class="numbered-list" start="3"><li>檢查波長範圍是否正確，無誤後點選 <strong>「OK」</strong>。</li></ol><ol type="1" id="26f04147-e29c-8078-bc8c-fd0e1bd2d68b" class="numbered-list" start="4"><li>系統即會進行裁切並輸出，完成單一樣本影像的儲存。</li></ol><p id="26f04147-e29c-8072-b8b1-f0c52a8a6392" class="">
+</p></div><div id="26f04147-e29c-80bd-a300-cf1364ec82e7" style="width:81.25%" class="column"><figure id="26f04147-e29c-803b-8165-c97a671b6da8" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/de788f4e-1dd5-492c-a815-53a596a106b4.png"><img style="width:368.86227544910173px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/de788f4e-1dd5-492c-a815-53a596a106b4.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26f04147-e29c-807d-a2a5-e4da139ad3e7"><div style="font-size:1.5em"><span class="icon">⚙</span></div><div style="width:100%"><p id="26f04147-e29c-801d-a0c5-db80e0a8c6e1" class=""><strong>Wavelength Range 視窗</strong></p><div id="26f04147-e29c-80cd-82c8-cc581605eba0" class="column-list"><div id="26f04147-e29c-803a-9d58-d84cd6789d53" style="width:81.25%" class="column"><p id="26f04147-e29c-8039-a3ac-f7e37cfba95f" class="">點選 「OK」後會需要跑一下才會將影像儲存完畢。 </p><p id="26f04147-e29c-8051-a8c3-ec541dc6330e" class="">儲存檔案為.raw檔</p></div><div id="26f04147-e29c-8020-9903-f723ad3254fc" style="width:68.74999999999997%" class="column"><figure id="26f04147-e29c-8072-bd86-eecbc6cd56af" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/3JPG.jpg"><img style="width:144px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/3JPG.jpg"/></a></figure></div></div></div></figure><hr id="26f04147-e29c-80c7-a34d-c318ecbf87c6"/><h2 id="26f04147-e29c-8027-a429-e12d87cff7e5" class=""><mark class="highlight-blue_background"><strong>第一階段：影像裁切（Crop）</strong></mark></h2><div id="26f04147-e29c-8005-8071-edac69eef1f2" class="column-list"><div id="26f04147-e29c-80fe-b449-eccd85027d4d" style="width:81.25%" class="column"><h3 id="26f04147-e29c-8078-948a-dbd0dcf34c68" class=""><span style="border-bottom:0.05em solid">[步驟 1] 匯入Crop後的影像</span></h3><p id="26f04147-e29c-80b6-96ac-e595f2194da0" class="">
+</p><ol type="1" id="26f04147-e29c-8034-b5c1-f2148a59d698" class="numbered-list" start="1"><li>點擊右側的 <strong>「Load」</strong> 按鈕<mark class="highlight-red">（紅色框）</mark>。</li></ol><ol type="1" id="26f04147-e29c-8096-8447-f68f15b0a49b" class="numbered-list" start="2"><li>選取欲處理的 <strong>.raw 原始高光譜影像檔</strong>。</li></ol><ol type="1" id="26f04147-e29c-805e-82ed-e8ff59f7fe42" class="numbered-list" start="3"><li>成功載入後：</li></ol><ul id="26f04147-e29c-8081-9435-e68309dacfe5" class="bulleted-list"><li style="list-style-type:disc">檔案路徑會顯示在 <strong>「Path」欄位</strong><mark class="highlight-blue">（藍色框）</mark>。</li></ul><ul id="26f04147-e29c-806b-aabb-d22731a00832" class="bulleted-list"><li style="list-style-type:disc">主畫面中央將顯示影像內容。</li></ul><p id="26f04147-e29c-8036-8532-fa019b100255" class="">
+</p></div><div id="26f04147-e29c-80d9-864c-f1ec1192ffa4" style="width:100%" class="column"><figure id="26f04147-e29c-80ba-bf76-fb8ae99600ad" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/1_3.jpg"><img style="width:576px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/1_3.jpg"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26f04147-e29c-8020-89e0-e4394dea42e1"><div style="font-size:1.5em"><span class="icon">⚙</span></div><div style="width:100%"><p id="26f04147-e29c-8095-97bd-cc626d927747" class="">[此步驟與第一階段第一步驟相同]成功載入有影像顯示後，可在Path欄位確認是否載入為正確的影像（路徑）</p></div></figure><div id="26f04147-e29c-8061-8942-e8176a63501d" class="column-list"><div id="26f04147-e29c-805c-85a2-ccdcec4186ac" style="width:100%" class="column"><h3 id="26f04147-e29c-8097-ab5e-c664f99ed150" class=""><span style="border-bottom:0.05em solid">[步驟 2] 選取完整影像範圍</span></h3><p id="26f04147-e29c-80a6-8bf1-c50460341184" class="">
+</p></div><div id="26f04147-e29c-80f8-a8bf-f626a03eddb8" style="width:100%" class="column"><p id="26f04147-e29c-80ee-b8ff-ff6a689f4f47" class="">
+</p></div></div><ol type="1" id="26f04147-e29c-806a-aa25-df790ece3408" class="numbered-list" start="1"><li>載入裁切後的單一樣本影像。</li></ol><ol type="1" id="26f04147-e29c-8098-abf9-dbeda290ebf7" class="numbered-list" start="2"><li>使用左側工具列中的 <strong>矩形選取工具</strong><mark class="highlight-red">（紅色框）</mark>，框選整張影像範圍。</li></ol><ol type="1" id="26f04147-e29c-8063-b2a5-c19f3b58bcf7" class="numbered-list" start="3"><li>確認右側 <strong>ROI Range</strong><mark class="highlight-blue">（藍色框）</mark>顯示的座標範圍與影像大小一致。</li></ol><ol type="1" id="26f04147-e29c-804a-9bcf-d5866d82dd3b" class="numbered-list" start="4"><li>在影像畫面中 <strong>按滑鼠右鍵</strong>，選擇 <strong>「ROI Multi-Profile → All Profile」</strong>，進入全波段數據擷取模式。</li></ol><div id="26f04147-e29c-80ec-86b1-fffabd405f10" class="column-list"><div id="26f04147-e29c-802d-9d55-c1847d7f68e6" style="width:106.25%" class="column"><figure id="26f04147-e29c-80e5-a9dc-ff21cef10ade" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/4_2.jpg"><img style="width:548.991455078125px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/4_2.jpg"/></a></figure></div><div id="26f04147-e29c-805a-97bf-f5650ee67206" style="width:75%" class="column"><figure id="26f04147-e29c-8023-9407-dc48cf6a5d46" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/2c678792-93cb-47bc-b489-2cde724a0d5e.png"><img style="width:480px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/2c678792-93cb-47bc-b489-2cde724a0d5e.png"/></a></figure></div></div><h3 id="26f04147-e29c-803b-92eb-e6ec97d0836e" class=""><span style="border-bottom:0.05em solid">[步驟 3] 數據輸出（Export to .txt）</span></h3><p id="26f04147-e29c-80f4-b51b-e6b565b36fde" class="">
+</p><div id="26f04147-e29c-80a1-ace8-c824f170fdbf" class="column-list"><div id="26f04147-e29c-80ff-a1c1-f05c8a2540e5" style="width:100%" class="column"><ol type="1" id="26f04147-e29c-80cd-b8b3-c311d28ed4bc" class="numbered-list" start="1"><li>完成 <strong>ROI Multi-Profile → All Profile</strong> 設定後，右下角 <strong>Profile</strong> 視窗中的 <strong>Lines 數值</strong> 會開始累加。</li></ol><ol type="1" id="26f04147-e29c-80a8-b7ea-fe0e9dc9a604" class="numbered-list" start="2"><li>累加數值會從 <strong>0</strong> 開始，直到達到影像的總像素數（X × Y，例如：X=132, Y=200 → 總計 26,400 Lines）。</li></ol><ol type="1" id="26f04147-e29c-8094-9de6-d17e2403034f" class="numbered-list" start="3"><li>當 Lines 值達到總像素數時，系統即完成運算，並自動輸出全波段數據為 <strong>.txt 檔</strong>。</li></ol><p id="26f04147-e29c-8063-bf22-e89d636e2b61" class="">
+</p></div><div id="26f04147-e29c-8006-9d89-d01598e37a44" style="width:74.99999999999999%" class="column"><figure id="26f04147-e29c-8038-86f4-d1c05498918d" class="image"><a href="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/5_2.jpg"><img style="width:528px" src="HSI%20%E5%AF%A6%E9%A9%97%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%2026a04147e29c80c8befee98265bc923a/5_2.jpg"/></a></figure></div></div><p id="26f04147-e29c-802f-bc13-ef4812755e5f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
